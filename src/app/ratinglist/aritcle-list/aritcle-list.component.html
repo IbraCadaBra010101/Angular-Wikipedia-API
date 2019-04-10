@@ -1,0 +1,54 @@
+
+<main>
+
+  <header class="searchForm-container">
+
+    <form class="searchForm">
+      <img class="wiki-logo" src="https://image.ibb.co/e6vOFQ/wikipedia.png" alt="Wikipedia Logo">
+
+      <input type="search" class="searchForm-input" [(ngModel)]="searchText"  [ngModelOptions]="{standalone: true}" autocomplete="off" placeholder="Sparade artiklar ...">
+      <button type="submit" class="icon searchIcon">
+        <img src="https://image.ibb.co/cpG8zk/search.png" alt="Magnifying Glass Icon">
+      </button>
+      <!--sortByTitle() {-->
+      <!--this.data.sort((a, b) => a.title.localeCompare(b.title));-->
+      <!--}-->
+
+      <!--reverseSortbyTitle() {-->
+      <!--this.data.sort((a, b) => b.title.localeCompare(a.title));-->
+      <!--}-->
+
+      <button type="submit" class="icon searchIcon" (click)="reverseSortbyTitle()">
+        <!--<i class="large material-icons icon-blue">note_add</i>-->
+        <i class="material-icons icon-white">
+          arrow_downward
+        </i>
+      </button>
+      <button type="submit" class="icon searchIcon" (click)="sortByTitle()">
+        <i class="material-icons icon-white">
+          arrow_upward
+        </i>
+      </button>
+    </form>
+
+  </header>
+
+  <section class="searchResults">
+    <div class="resultItem" *ngFor=" let wiki of data| filter:searchText">
+      <h3 class="resultItem-title">
+        <a href="" class="wiki-title">{{wiki.title| uppercase}}</a>
+
+      </h3>
+      <h4><span class="word-count">This article contains {{wiki.wordcount}} words</span><br></h4>
+
+      <h3 class="time-stamp"><span>This article was updated in {{wiki.timestamp | date: "dd/MM/yyyy"}}</span></h3>
+
+      <ngb-rating class="wiki-title" [(rate)]="currentRate"> </ngb-rating>
+      <pre class="wiki-title">Rate this article: <b>{{currentRate}}  </b><button class="btn-rating" (click)="SaveObjectFromRatingList()">Save my rating</button></pre>
+
+    </div>
+  </section>
+
+</main>
+
+
